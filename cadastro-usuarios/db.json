@@ -17,18 +17,23 @@
       ]
     },
     {
-      "id": "e444",
+      "id": "0ca3",
       "nome": "luigi",
-      "nomeMeio": "",
-      "sobrenome": "Itamar",
-      "email": "teste@teste.com",
+      "nomeMeio": "fidencio",
+      "sobrenome": "itamar",
+      "email": "luigiteste@teste.com",
       "cep": "11111111",
       "cpf": "11111111111",
       "objetos": [
         {
           "nome": "notebook",
           "quantidade": 1,
-          "nSerie": "1111"
+          "nSerie": "1111111111"
+        },
+        {
+          "nome": "celular",
+          "quantidade": 1,
+          "nSerie": "1111111222"
         }
       ]
     }
