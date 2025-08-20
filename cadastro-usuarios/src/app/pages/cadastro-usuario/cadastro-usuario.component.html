@@ -1,0 +1,49 @@
+<h2>Cadastro de Usuário</h2>
+<form [formGroup]="usuarioForm" (ngSubmit)="cadastrar()">
+  <div>
+    <label>Nome:</label>
+    <input formControlName="nome" />
+    <span *ngIf="usuarioForm.get('nome')?.invalid && usuarioForm.get('nome')?.touched">Obrigatório</span>
+  </div>
+  <div>
+    <label>Nome do Meio:</label>
+    <input formControlName="nomeMeio" />
+  </div>
+  <div>
+    <label>Sobrenome:</label>
+    <input formControlName="sobrenome" />
+    <span *ngIf="usuarioForm.get('sobrenome')?.invalid && usuarioForm.get('sobrenome')?.touched">Obrigatório</span>
+  </div>
+  <div>
+    <label>Email:</label>
+    <input formControlName="email" type="email" />
+    <span *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">Email inválido</span>
+  </div>
+  <div>
+    <label>CEP:</label>
+    <input formControlName="cep" maxlength="8" />
+    <span *ngIf="usuarioForm.get('cep')?.invalid && usuarioForm.get('cep')?.touched">CEP inválido</span>
+  </div>
+  <div>
+    <label>CPF:</label>
+    <input formControlName="cpf" maxlength="11" />
+    <span *ngIf="usuarioForm.get('cpf')?.invalid && usuarioForm.get('cpf')?.touched">CPF inválido</span>
+  </div>
+
+  <div formArrayName="objetos">
+    <h3>Objetos</h3>
+    <button type="button" (click)="adicionarObjeto()">Adicionar Objeto</button>
+    <div *ngFor="let obj of objetos.controls; let i = index" [formGroupName]="i" style="margin-bottom:8px;">
+      <label>Nome:</label>
+      <input formControlName="nome" />
+      <label>Quantidade:</label>
+      <input formControlName="quantidade" type="number" min="1" />
+      <label>Nº Série:</label>
+      <input formControlName="nSerie" />
+      <button type="button" (click)="removerObjeto(i)">Remover</button>
+    </div>
+  </div>
+
+  <button type="submit">Cadastrar</button>
+</form>
+

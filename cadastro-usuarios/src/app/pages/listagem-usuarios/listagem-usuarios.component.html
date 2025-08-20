@@ -1,0 +1,31 @@
+<h2>Listagem de Usuários</h2>
+<table border="1" cellpadding="4" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Nome do Meio</th>
+      <th>Sobrenome</th>
+      <th>Email</th>
+      <th>CEP</th>
+      <th>CPF</th>
+      <th>Objetos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{ usuario.nome }}</td>
+      <td>{{ usuario.nomeMeio }}</td>
+      <td>{{ usuario.sobrenome }}</td>
+      <td>{{ usuario.email }}</td>
+      <td>{{ usuario.cep }}</td>
+      <td>{{ usuario.cpf }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let obj of usuario.objetos">
+            {{ obj.nome }} ({{ obj.quantidade }}) - Série: {{ obj.nSerie }}
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

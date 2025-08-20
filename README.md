@@ -1,4 +1,4 @@
-📌 Projeto Cadastro e Listagem de Usuários
+  📌 Projeto Cadastro e Listagem de Usuários
 📝 Descrição
 
 Este projeto consiste em uma aplicação Angular integrada ao JSON Server para simulação de banco de dados.

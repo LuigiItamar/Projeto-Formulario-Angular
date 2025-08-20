@@ -1,0 +1,36 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "João",
+      "nomeMeio": "da Silva",
+      "sobrenome": "Souza",
+      "email": "joao@email.com",
+      "cep": "12345678",
+      "cpf": "12345678909",
+      "objetos": [
+        {
+          "nome": "Notebook",
+          "quantidade": 1,
+          "nSerie": "ABC123"
+        }
+      ]
+    },
+    {
+      "id": "e444",
+      "nome": "luigi",
+      "nomeMeio": "",
+      "sobrenome": "Itamar",
+      "email": "teste@teste.com",
+      "cep": "11111111",
+      "cpf": "11111111111",
+      "objetos": [
+        {
+          "nome": "notebook",
+          "quantidade": 1,
+          "nSerie": "1111"
+        }
+      ]
+    }
+  ]
+}
