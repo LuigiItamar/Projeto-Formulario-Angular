@@ -1,41 +1,25 @@
 {
   "usuarios": [
     {
-      "id": "1",
-      "nome": "João",
-      "nomeMeio": "da Silva",
-      "sobrenome": "Souza",
-      "email": "joao@email.com",
-      "cep": "12345678",
-      "cpf": "12345678909",
-      "objetos": [
-        {
-          "nome": "Notebook",
-          "quantidade": 1,
-          "nSerie": "ABC123"
-        }
-      ]
-    },
-    {
-      "id": "0ca3",
       "nome": "luigi",
       "nomeMeio": "fidencio",
       "sobrenome": "itamar",
-      "email": "luigiteste@teste.com",
+      "email": "teste@teste.com",
       "cep": "11111111",
       "cpf": "11111111111",
       "objetos": [
         {
           "nome": "notebook",
-          "quantidade": 1,
-          "nSerie": "1111111111"
+          "quantidade": 3,
+          "nSerie": "2500000"
         },
         {
-          "nome": "celular",
+          "nome": "teste",
           "quantidade": 1,
-          "nSerie": "1111111222"
+          "nSerie": "5000000"
         }
-      ]
+      ],
+      "id": "d415"
     }
   ]
 }

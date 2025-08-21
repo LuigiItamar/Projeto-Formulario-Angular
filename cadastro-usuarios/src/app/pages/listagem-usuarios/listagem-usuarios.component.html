@@ -3,20 +3,26 @@
   <table>
     <thead>
       <tr>
-        <th>Nome</th>
-        <th>Nome do Meio</th>
-        <th>Sobrenome</th>
+        <th>
+          <mat-checkbox [(ngModel)]="selecionarTodos" (change)="toggleTodos()"></mat-checkbox>
+        </th>
+        <th>Nome Completo</th>
         <th>Email</th>
         <th>CEP</th>
         <th>CPF</th>
         <th>Objetos</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let usuario of usuarios">
-        <td>{{ usuario.nome }}</td>
-        <td>{{ usuario.nomeMeio }}</td>
-        <td>{{ usuario.sobrenome }}</td>
+        <td>
+          <mat-checkbox [(ngModel)]="usuario.selecionado"></mat-checkbox>
+        </td>
+        <td>{{ usuario.nome }}
+            {{ usuario.nomeMeio }}
+            {{ usuario.sobrenome }}
+        </td>
         <td>{{ usuario.email }}</td>
         <td>{{ usuario.cep }}</td>
         <td>{{ usuario.cpf }}</td>
@@ -27,7 +33,16 @@
             </li>
           </ul>
         </td>
+        <td>
+          <button mat-icon-button color="primary" (click)="editarUsuario(usuario)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="excluirUsuario(usuario)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
+  <button style="margin-top: 20px;" mat-raised-button color="accent" (click)="abrirEditarMuitos()">Editar Muitos</button>
 </div>
