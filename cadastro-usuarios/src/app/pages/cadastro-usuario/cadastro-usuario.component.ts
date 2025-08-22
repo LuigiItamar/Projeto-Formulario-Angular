@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ConfirmarDialogComponent } from '../../components/modals/confirmar-dialog.component';
 import { FormControl } from '@angular/forms';
 import { CepService } from '../../services/cep.service';
+import { TypebotComponent } from '../../components/bots/typebot.component';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -24,7 +25,8 @@ import { CepService } from '../../services/cep.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    TypebotComponent
   ],
   templateUrl: './cadastro-usuario.component.html',
   styleUrls: ['./cadastro-usuario.component.css']

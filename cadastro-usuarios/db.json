@@ -1,31 +1,3 @@
 {
-  "usuarios": [
-    {
-      "nome": "luigi",
-      "nomeMeio": "teste",
-      "sobrenome": "itamar",
-      "email": "teste@teste.com",
-      "cep": "37060130",
-      "cpf": "11111111111",
-      "objetos": [
-        {
-          "tipoProduto": "Notebook",
-          "quantidade": 1,
-          "nSerie": [
-            "111"
-          ]
-        },
-        {
-          "tipoProduto": "Teclado",
-          "quantidade": 1,
-          "nSerie": [
-            "1155"
-          ]
-        }
-      ],
-      "endereco": "Rua Paul P. Harris",
-      "cidadeEstado": "Varginha / MG",
-      "id": "6fc3"
-    }
-  ]
+  "usuarios": []
 }

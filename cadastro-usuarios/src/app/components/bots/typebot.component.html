@@ -1,0 +1,14 @@
+<button class="chat-btn" (click)="toggleChat()">💬</button>
+
+<div class="chat-box" *ngIf="showChat">
+  <div class="chat-header">
+    <span>Atendimento</span>
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+  </div>
+  <iframe
+    src="https://typebot.co/my-typebot-nf4tz46"
+    width="100%"
+    height="100%"
+    style="border: none; border-radius: 0 0 10px 10px;"
+  ></iframe>
+</div>
