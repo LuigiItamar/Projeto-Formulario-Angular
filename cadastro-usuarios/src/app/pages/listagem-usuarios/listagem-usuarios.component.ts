@@ -116,13 +116,42 @@ export class ListagemUsuariosComponent implements OnInit {
               };
             }) as Usuario[];
 
-          // Atualiza a lista na memória
-          this.usuarios = usuariosImportados;
+          // Buscar usuários já cadastrados
+          this.apiUsuarios.listar().subscribe({
+            next: (usuariosExistentes) => {
+              // Verifica conflitos por CPF (ou troque por outro campo único, como email)
+              const conflitos: Usuario[] = [];
+              const novosUsuarios: Usuario[] = [];
 
-          // Salva no backend/fake backend
-          this.apiUsuarios.importarEmMassa(usuariosImportados).subscribe({
-            next: () => this.carregarUsuarios(),
-            error: err => alert('Erro ao salvar usuários importados: ' + err)
+              usuariosImportados.forEach(importado => {
+                const existe = usuariosExistentes.some(
+                  existente => existente.cpf === importado.cpf
+                );
+                if (existe) {
+                  conflitos.push(importado);
+                } else {
+                  novosUsuarios.push(importado);
+                }
+              });
+
+              if (conflitos.length > 0) {
+                alert(
+                  'Os seguintes usuários já existem e não foram cadastrados:\n\n' +
+                  conflitos.map(u => `${u.nome} ${u.nomeMeio} ${u.sobrenome} (CPF: ${u.cpf})`).join('\n')
+                );
+              }
+
+              // Cadastra apenas os novos usuários
+              if (novosUsuarios.length > 0) {
+                this.apiUsuarios.cadastrarEmMassa(novosUsuarios).subscribe({
+                  next: () => this.carregarUsuarios(),
+                  error: err => alert('Erro ao salvar usuários importados: ' + err)
+                });
+              } else {
+                this.carregarUsuarios();
+              }
+            },
+            error: err => alert('Erro ao buscar usuários existentes: ' + err)
           });
         }
       });

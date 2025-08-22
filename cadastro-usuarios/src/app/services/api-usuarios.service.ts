@@ -43,17 +43,10 @@ export class ApiUsuariosService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  // Importar usuários em massa
-  importarEmMassa(usuarios: Usuario[]): Observable<any> {
-    // Remove todos e adiciona os novos (para json-server)
-    return this.http.get<Usuario[]>(this.baseUrl).pipe(
-      switchMap(existing =>
-        forkJoin(existing.map(u => this.http.delete(`${this.baseUrl}/${u.id}`)))
-      ),
-      switchMap(() =>
-        forkJoin(usuarios.map(u => this.http.post(this.baseUrl, u)))
-      )
-    );
+  // Cadastrar usuários em massa
+  cadastrarEmMassa(usuarios: Usuario[]): Observable<any> {
+    // Apenas adiciona (POST) cada novo usuário
+    return forkJoin(usuarios.map(u => this.http.post(this.baseUrl, u)));
   }
 
   // Tratamento de erros HTTP

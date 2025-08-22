@@ -28,24 +28,6 @@
       ]
     },
     {
-      "id": "50cf",
-      "nome": "MARIA",
-      "nomeMeio": "CLARA",
-      "sobrenome": "SOUZA",
-      "email": "maria.souza@email.com",
-      "cpf": "22222222222",
-      "objetos": [
-        {
-          "tipoProduto": "Celular",
-          "quantidade": 2,
-          "nSerie": [
-            "9876",
-            "1234"
-          ]
-        }
-      ]
-    },
-    {
       "id": "07d4",
       "nome": "JOÃO",
       "nomeMeio": "PEDRO",
@@ -182,6 +164,198 @@
           "nSerie": [
             "8899",
             "9900"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7275",
+      "nome": "MARIA",
+      "nomeMeio": "CLARA",
+      "sobrenome": "SOUZA",
+      "email": "maria.souza@email.com",
+      "cpf": "22222222222",
+      "objetos": [
+        {
+          "tipoProduto": "Celular",
+          "quantidade": 2,
+          "nSerie": [
+            "9876",
+            "1234"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7dc6",
+      "nome": "LUIZA",
+      "nomeMeio": "MARTINS",
+      "sobrenome": "PEREIRA",
+      "email": "luiza.pereira@email.com",
+      "cpf": "12345678901",
+      "objetos": [
+        {
+          "tipoProduto": "Notebook",
+          "quantidade": 1,
+          "nSerie": [
+            "1001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5a4c",
+      "nome": "THIAGO",
+      "nomeMeio": "ALVES",
+      "sobrenome": "ROCHA",
+      "email": "thiago.rocha@email.com",
+      "cpf": "23456789012",
+      "objetos": [
+        {
+          "tipoProduto": "Tablet",
+          "quantidade": 2,
+          "nSerie": [
+            "2002",
+            "2003"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8fad",
+      "nome": "CAROLINA",
+      "nomeMeio": "DIAS",
+      "sobrenome": "MELO",
+      "email": "carolina.melo@email.com",
+      "cpf": "34567890123",
+      "objetos": [
+        {
+          "tipoProduto": "Celular",
+          "quantidade": 1,
+          "nSerie": [
+            "3001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4a49",
+      "nome": "DANIEL",
+      "nomeMeio": "SOUZA",
+      "sobrenome": "LOPES",
+      "email": "daniel.lopes@email.com",
+      "cpf": "45678901234",
+      "objetos": [
+        {
+          "tipoProduto": "Monitor",
+          "quantidade": 2,
+          "nSerie": [
+            "4002",
+            "4003"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15f3",
+      "nome": "AMANDA",
+      "nomeMeio": "COSTA",
+      "sobrenome": "RIBEIRO",
+      "email": "amanda.ribeiro@email.com",
+      "cpf": "56789012345",
+      "objetos": [
+        {
+          "tipoProduto": "Impressora",
+          "quantidade": 1,
+          "nSerie": [
+            "5001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "44ce",
+      "nome": "PEDRO",
+      "nomeMeio": "HENRIQUE",
+      "sobrenome": "VASCONCELOS",
+      "email": "pedro.vasconcelos@email.com",
+      "cpf": "67890123456",
+      "objetos": [
+        {
+          "tipoProduto": "Teclado",
+          "quantidade": 1,
+          "nSerie": [
+            "6001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6195",
+      "nome": "RENATA",
+      "nomeMeio": "BARBOSA",
+      "sobrenome": "LIMA",
+      "email": "renata.lima@email.com",
+      "cpf": "78901234567",
+      "objetos": [
+        {
+          "tipoProduto": "Mouse",
+          "quantidade": 2,
+          "nSerie": [
+            "7002",
+            "7003"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "552e",
+      "nome": "FELIPE",
+      "nomeMeio": "MOURA",
+      "sobrenome": "GOMES",
+      "email": "felipe.gomes@email.com",
+      "cpf": "89012345678",
+      "objetos": [
+        {
+          "tipoProduto": "Headset",
+          "quantidade": 1,
+          "nSerie": [
+            "8001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4d92",
+      "nome": "ISABELA",
+      "nomeMeio": "FERREIRA",
+      "sobrenome": "SOUZA",
+      "email": "isabela.souza@email.com",
+      "cpf": "90123456789",
+      "objetos": [
+        {
+          "tipoProduto": "Smartwatch",
+          "quantidade": 1,
+          "nSerie": [
+            "9001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "41b9",
+      "nome": "GUSTAVO",
+      "nomeMeio": "ANDRADE",
+      "sobrenome": "MONTEIRO",
+      "email": "gustavo.monteiro@email.com",
+      "cpf": "11223344556",
+      "objetos": [
+        {
+          "tipoProduto": "Câmera",
+          "quantidade": 2,
+          "nSerie": [
+            "10002",
+            "10003"
           ]
         }
       ]
