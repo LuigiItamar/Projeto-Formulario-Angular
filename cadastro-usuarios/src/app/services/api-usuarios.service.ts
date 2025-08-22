@@ -6,7 +6,7 @@ import { Usuario } from '../models/usuario.model';
 
 @Injectable({ providedIn: 'root' })
 export class ApiUsuariosService {
-  private baseUrl = 'http://localhost:3000/usuarios'; // URL da API JSON Server
+  private baseUrl = 'http://localhost:3000/usuarios';
 
   constructor(private http: HttpClient) { }
 

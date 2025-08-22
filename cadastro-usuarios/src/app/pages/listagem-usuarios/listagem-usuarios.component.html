@@ -4,12 +4,18 @@
     <div style="gap: 15px; display: flex;">
       <button mat-raised-button color="primary" (click)="exportarCSV()">Exportar</button>
       <button mat-raised-button color="primary" (click)="fileInput.click()">Importar</button>
+      <button mat-raised-button color="warn" (click)="excluirUsuariosSelecionados()">Excluir</button>
       <input #fileInput type="file" accept=".csv" style="display: none" (change)="importarCSV($event)">
     </div>
   </div>
   <table>
     <thead>
       <tr>
+        <th>
+          <input type="checkbox"
+            [checked]="selecionados.length === usuarios.filter(u => !!u.id).length && usuarios.filter(u => !!u.id).length > 0"
+            (change)="selecionarTodos($event.target.checked)">
+        </th>
         <th>Nome</th>
         <th>Email</th>
         <th>CPF</th>
@@ -19,13 +25,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let usuario of usuarios">
+        <td>
+          <input type="checkbox"
+            [checked]="usuario.id && selecionados.includes(usuario.id.toString())"
+            [disabled]="!usuario.id"
+            (change)="usuario.id && toggleSelecionado(usuario.id.toString(), $event.target.checked)">
+        </td>
         <td>{{ usuario.nome }} {{ usuario.nomeMeio }} {{ usuario.sobrenome }}</td>
         <td>{{ usuario.email }}</td>
         <td>{{ usuario.cpf }}</td>
         <td>
           <ul>
             <li *ngFor="let obj of usuario.objetos">
-              {{ obj.tipoProduto }} ({{ obj.quantidade }}): 
+              {{ obj.tipoProduto }} ({{ obj.quantidade }}):
               <span *ngFor="let serie of obj.nSerie; let last = last">
                 {{ serie }}<span *ngIf="!last">, </span>
               </span>

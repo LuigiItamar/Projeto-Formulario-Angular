@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Papa } from 'ngx-papaparse';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-listagem-usuarios',
@@ -16,6 +17,7 @@ import { Papa } from 'ngx-papaparse';
 })
 export class ListagemUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
+  selecionados: string[] = []; // IDs dos usuários selecionados
 
   constructor(
     private apiUsuarios: ApiUsuariosService,
@@ -37,8 +39,8 @@ export class ListagemUsuariosComponent implements OnInit {
   }
 
   excluirUsuario(usuario: Usuario) {
-    if (confirm(`Deseja realmente excluir o usuário ${usuario.nome}?`)) {
-      this.apiUsuarios.excluir(usuario.id!).subscribe({
+    if (usuario.id && confirm(`Deseja realmente excluir o usuário ${usuario.nome}?`)) {
+      this.apiUsuarios.excluir(usuario.id.toString()).subscribe({
         next: () => this.carregarUsuarios(),
         error: err => alert('Erro ao excluir usuário: ' + err)
       });
@@ -119,7 +121,6 @@ export class ListagemUsuariosComponent implements OnInit {
           // Buscar usuários já cadastrados
           this.apiUsuarios.listar().subscribe({
             next: (usuariosExistentes) => {
-              // Verifica conflitos por CPF (ou troque por outro campo único, como email)
               const conflitos: Usuario[] = [];
               const novosUsuarios: Usuario[] = [];
 
@@ -141,7 +142,6 @@ export class ListagemUsuariosComponent implements OnInit {
                 );
               }
 
-              // Cadastra apenas os novos usuários
               if (novosUsuarios.length > 0) {
                 this.apiUsuarios.cadastrarEmMassa(novosUsuarios).subscribe({
                   next: () => this.carregarUsuarios(),
@@ -157,5 +157,43 @@ export class ListagemUsuariosComponent implements OnInit {
       });
     };
     reader.readAsText(file);
+  }
+
+  toggleSelecionado(id: string, checked: boolean) {
+    if (!id) return;
+    if (checked) {
+      if (!this.selecionados.includes(id)) {
+        this.selecionados.push(id);
+      }
+    } else {
+      this.selecionados = this.selecionados.filter(sid => sid !== id);
+    }
+  }
+
+  selecionarTodos(checked: boolean) {
+    if (checked) {
+      this.selecionados = this.usuarios
+        .filter(u => !!u.id)
+        .map(u => u.id!.toString());
+    } else {
+      this.selecionados = [];
+    }
+  }
+
+  excluirUsuariosSelecionados() {
+    if (this.selecionados.length === 0) {
+      alert('Selecione pelo menos um usuário para excluir.');
+      return;
+    }
+    if (confirm('Deseja realmente excluir os usuários selecionados?')) {
+      const reqs = this.selecionados.map(id => this.apiUsuarios.excluir(id));
+      forkJoin(reqs).subscribe({
+        next: () => {
+          this.selecionados = [];
+          this.carregarUsuarios();
+        },
+        error: err => alert('Erro ao excluir usuários: ' + err)
+      });
+    }
   }
 }
