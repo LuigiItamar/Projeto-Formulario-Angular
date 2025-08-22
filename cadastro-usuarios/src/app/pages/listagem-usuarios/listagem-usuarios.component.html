@@ -1,6 +1,11 @@
 <div class="listagem-container mat-elevation-z2">
-  <div>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
     <h2>Listagem de Usuários</h2>
+    <div style="gap: 15px; display: flex;">
+      <button mat-raised-button color="primary" (click)="exportarCSV()">Exportar</button>
+      <button mat-raised-button color="primary" (click)="fileInput.click()">Importar</button>
+      <input #fileInput type="file" accept=".csv" style="display: none" (change)="importarCSV($event)">
+    </div>
   </div>
   <table>
     <thead>

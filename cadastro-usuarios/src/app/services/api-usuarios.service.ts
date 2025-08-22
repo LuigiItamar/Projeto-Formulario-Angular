@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError, forkJoin } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
 
 @Injectable({ providedIn: 'root' })
@@ -41,6 +41,19 @@ export class ApiUsuariosService {
   //excluir um usuario
   excluir(id: number | string) {
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  // Importar usuários em massa
+  importarEmMassa(usuarios: Usuario[]): Observable<any> {
+    // Remove todos e adiciona os novos (para json-server)
+    return this.http.get<Usuario[]>(this.baseUrl).pipe(
+      switchMap(existing =>
+        forkJoin(existing.map(u => this.http.delete(`${this.baseUrl}/${u.id}`)))
+      ),
+      switchMap(() =>
+        forkJoin(usuarios.map(u => this.http.post(this.baseUrl, u)))
+      )
+    );
   }
 
   // Tratamento de erros HTTP
