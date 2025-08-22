@@ -1,3 +1,26 @@
 {
-  "usuarios": []
+  "usuarios": [
+    {
+      "nome": "LUIGI",
+      "nomeMeio": "FIDENCIO",
+      "sobrenome": "ITAMAR",
+      "email": "teste@teste.com",
+      "cep": "37060130",
+      "cpf": "11111111111",
+      "objetos": [
+        {
+          "tipoProduto": "Notebook",
+          "quantidade": 3,
+          "nSerie": [
+            "1122",
+            "1155",
+            "2277"
+          ]
+        }
+      ],
+      "endereco": "Rua Paul P. Harris",
+      "cidadeEstado": "Varginha / MG",
+      "id": "3809"
+    }
+  ]
 }

@@ -127,7 +127,16 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   getNSerieControls(obj: AbstractControl) {
-    return (obj.get('nSerie') as FormArray).controls;
+    return (obj.get('nSerie') as FormArray).controls as FormControl[];
+  }
+
+  getNSerieRows(nSerieControls: FormControl[]) {
+    const rows = [];
+    for (let i = 0; i < nSerieControls.length; i += 3) {
+      // Retorna apenas os índices
+      rows.push(Array.from({length: Math.min(3, nSerieControls.length - i)}, (_, idx) => i + idx));
+    }
+    return rows;
   }
 
   cadastrar() {

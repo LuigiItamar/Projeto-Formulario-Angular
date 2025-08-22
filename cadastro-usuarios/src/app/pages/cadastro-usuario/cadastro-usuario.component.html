@@ -71,15 +71,19 @@
 
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Quantidade</mat-label>
-        <input matInput formControlName="quantidade" type="number" min="1" />
+        <input matInput formControlName="quantidade" type="number" min="1" (change)="atualizarNumerosSerie(i)" />
       </mat-form-field>
 
-      <div formArrayName="nSerie">
-        <div *ngFor="let serie of getNSerieControls(obj); let j = index">
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Nº Série {{ j + 1 }}</mat-label>
-            <input matInput [formControlName]="j" />
-          </mat-form-field>
+      <div formArrayName="nSerie" class="nserie-container">
+        <div class="nserie-row" style="flex-wrap: wrap;">
+          <ng-container *ngFor="let ctrl of getNSerieControls(obj); let idx = index">
+            <div class="nserie-col">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nº Série {{ idx + 1 }}</mat-label>
+                <input matInput [formControlName]="idx" />
+              </mat-form-field>
+            </div>
+          </ng-container>
         </div>
       </div>
 

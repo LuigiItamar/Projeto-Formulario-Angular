@@ -66,3 +66,20 @@
 .w-num-serie {
   width: 100%;
 }
+
+.nserie-container {
+  max-height: 155px; 
+  overflow-y: auto;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.nserie-row {
+  display: flex;
+  gap: 8px;
+}
+.nserie-col {
+  flex: 1 1 0;
+}
