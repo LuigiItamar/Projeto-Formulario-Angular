@@ -93,7 +93,7 @@ Permite o cadastro de usuários com dados pessoais e objetos associados, além d
 
 ## 🤖 Assistente
 
-Este projeto contou com o auxílio do bot **GitHub Copilot** para automação de código, sugestões e resolução de dúvidas técnicas durante o desenvolvimento.
+Temos um bot que exibe um tutorial para o usuario aprender utilizar o sistema
 
 ---
 
