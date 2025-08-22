@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
   template: `
     <ng-container *ngIf="!data?.mensagem">
       <h2 mat-dialog-title>Confirmação</h2>
-      <mat-dialog-content>Tem certeza que deseja cadastrar?</mat-dialog-content>
+      <mat-dialog-content>Tem certeza que deseja {{ isEdicao ? 'cadastrar usuário?' : 'atualizar usuário?' }}</mat-dialog-content>
       <mat-dialog-actions align="end">
         <button mat-button mat-dialog-close="false">Cancelar</button>
         <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirmar</button>
@@ -30,4 +30,8 @@ export class ConfirmarDialogComponent {
     public dialogRef: MatDialogRef<ConfirmarDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+  get isEdicao(): boolean {
+    return !!this.data?.id;
+  }
 }

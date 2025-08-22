@@ -2,24 +2,30 @@
   "usuarios": [
     {
       "nome": "luigi",
-      "nomeMeio": "fidencio",
+      "nomeMeio": "teste",
       "sobrenome": "itamar",
       "email": "teste@teste.com",
-      "cep": "11111111",
+      "cep": "37060130",
       "cpf": "11111111111",
       "objetos": [
         {
-          "nome": "notebook",
-          "quantidade": 3,
-          "nSerie": "2500000"
+          "tipoProduto": "Notebook",
+          "quantidade": 1,
+          "nSerie": [
+            "111"
+          ]
         },
         {
-          "nome": "teste",
+          "tipoProduto": "Teclado",
           "quantidade": 1,
-          "nSerie": "5000000"
+          "nSerie": [
+            "1155"
+          ]
         }
       ],
-      "id": "d415"
+      "endereco": "Rua Paul P. Harris",
+      "cidadeEstado": "Varginha / MG",
+      "id": "6fc3"
     }
   ]
 }

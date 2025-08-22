@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiUsuariosService } from '../../services/api-usuarios.service';
-import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Usuario } from '../../models/usuario.model';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { ConfirmarDialogComponent } from '../../components/modals/confirmar-dialog.component';
+import { FormControl } from '@angular/forms';
+import { CepService } from '../../services/cep.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
   standalone: true,
   imports: [
     CommonModule,
-    HttpClientModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule,
-    ReactiveFormsModule
+    MatSelectModule
   ],
   templateUrl: './cadastro-usuario.component.html',
   styleUrls: ['./cadastro-usuario.component.css']
@@ -32,13 +32,15 @@ import { ConfirmarDialogComponent } from '../../components/modals/confirmar-dial
 export class CadastroUsuarioComponent implements OnInit {
   usuarioForm: FormGroup;
   isEdicao = false;
+  tiposProdutosLista = ['Monitor', 'Notebook', 'Teclado', 'Mouse'];
 
   constructor(
     private fb: FormBuilder,
     private apiUsuarios: ApiUsuariosService,
     private route: ActivatedRoute,
+    private router: Router,
     private dialog: MatDialog,
-    private router: Router
+    private cepService: CepService
   ) {
     this.usuarioForm = this.fb.group({
       nome: ['', Validators.required],
@@ -47,7 +49,9 @@ export class CadastroUsuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       cep: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
       cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
-      objetos: this.fb.array([])
+      objetos: this.fb.array([]),
+      endereco: [''],
+      cidadeEstado: ['']
     });
   }
 
@@ -64,15 +68,23 @@ export class CadastroUsuarioComponent implements OnInit {
           const usuario = usuarios.find((u: Usuario) => u.id == id);
           if (usuario) {
             this.usuarioForm.patchValue(usuario);
-            // Preenche o FormArray de objetos, se houver
             this.objetos.clear();
             if (usuario.objetos && usuario.objetos.length) {
-              usuario.objetos.forEach((obj: { nome: string; quantidade: number; nSerie: string }) => {
-                this.objetos.push(this.fb.group({
-                  nome: [obj.nome, Validators.required],
+              usuario.objetos.forEach((obj: any) => {
+                const nSerieArray = this.fb.array([]);
+                if (obj.nSerie && Array.isArray(obj.nSerie)) {
+                  obj.nSerie.forEach((serie: string) => {
+                    nSerieArray.push(this.fb.control(serie, Validators.required));
+                  });
+                } else {
+                  nSerieArray.push(this.fb.control('', Validators.required));
+                }
+                const objGroup = this.fb.group({
+                  tipoProduto: [obj.tipoProduto, Validators.required],
                   quantidade: [obj.quantidade, [Validators.required, Validators.min(1)]],
-                  nSerie: [obj.nSerie, Validators.required]
-                }));
+                  nSerie: nSerieArray
+                });
+                this.objetos.push(objGroup);
               });
             }
           }
@@ -82,34 +94,70 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   adicionarObjeto() {
-    this.objetos.push(this.fb.group({
-      nome: ['', Validators.required],
+    const objGroup = this.fb.group({
+      tipoProduto: ['', Validators.required],
       quantidade: [1, [Validators.required, Validators.min(1)]],
-      nSerie: ['', Validators.required]
-    }));
+      nSerie: this.fb.array([this.fb.control('', Validators.required)])
+    });
+    this.objetos.push(objGroup);
   }
 
   removerObjeto(index: number) {
     this.objetos.removeAt(index);
   }
 
+  atualizarNumerosSerie(i: number) {
+    const objGroup = this.objetos.at(i) as FormGroup;
+    const quantidade = objGroup.get('quantidade')?.value || 1;
+    const nSerieArray = objGroup.get('nSerie') as FormArray;
+
+    // Adiciona ou remove controles para igualar à quantidade
+    while (nSerieArray.length < quantidade) {
+      nSerieArray.push(this.fb.control('', Validators.required));
+    }
+    while (nSerieArray.length > quantidade) {
+      nSerieArray.removeAt(nSerieArray.length - 1);
+    }
+  }
+
+  getNumerosSerie(obj: AbstractControl): FormControl[] {
+    return (obj.get('nSerie') as FormArray).controls as FormControl[];
+  }
+
+  getNSerieControls(obj: AbstractControl) {
+    return (obj.get('nSerie') as FormArray).controls;
+  }
+
   cadastrar() {
     if (this.usuarioForm.valid) {
+      const objetosParaSalvar = this.objetos.controls.map(control => {
+        const objGroup = control as FormGroup;
+        return {
+          tipoProduto: objGroup.get('tipoProduto')?.value,
+          quantidade: objGroup.get('quantidade')?.value,
+          nSerie: (objGroup.get('nSerie') as FormArray).value
+        };
+      });
+
+      const usuarioParaSalvar = {
+        ...this.usuarioForm.value,
+        objetos: objetosParaSalvar
+      };
+
       this.dialog.open(ConfirmarDialogComponent).afterClosed().subscribe(result => {
         if (result === true) {
-          const id = this.route.snapshot.queryParamMap.get('id');
-          if (id) {
-            // Edição
-            this.apiUsuarios.editar({ ...this.usuarioForm.value, id }).subscribe({
+          if (this.isEdicao) {
+            const id = this.route.snapshot.queryParamMap.get('id');
+            this.apiUsuarios.editar({ ...usuarioParaSalvar, id }).subscribe({
               next: () => {
                 this.dialog.open(ConfirmarDialogComponent, {
                   data: {
                     sucesso: true,
-                    mensagem: 'Usuário editado com sucesso!'
+                    mensagem: 'Usuário atualizado com sucesso!'
                   }
                 }).afterClosed().subscribe(() => {
                   this.usuarioForm.reset();
-                  this.markAllPristineUntouched(this.usuarioForm);
+                  this.objetos.clear();
                   this.router.navigate(['/usuarios']);
                 });
               },
@@ -123,8 +171,7 @@ export class CadastroUsuarioComponent implements OnInit {
               }
             });
           } else {
-            // Cadastro novo
-            this.apiUsuarios.criar(this.usuarioForm.value).subscribe({
+            this.apiUsuarios.criar(usuarioParaSalvar).subscribe({
               next: () => {
                 this.dialog.open(ConfirmarDialogComponent, {
                   data: {
@@ -133,7 +180,7 @@ export class CadastroUsuarioComponent implements OnInit {
                   }
                 }).afterClosed().subscribe(() => {
                   this.usuarioForm.reset();
-                  this.markAllPristineUntouched(this.usuarioForm);
+                  this.objetos.clear();
                   this.router.navigate(['/usuarios']);
                 });
               },
@@ -154,16 +201,17 @@ export class CadastroUsuarioComponent implements OnInit {
     }
   }
 
-  private markAllPristineUntouched(formGroup: FormGroup | FormArray) {
-    formGroup.markAsPristine();
-    formGroup.markAsUntouched();
-    Object.values(formGroup.controls).forEach(control => {
-      if (control instanceof FormGroup || control instanceof FormArray) {
-        this.markAllPristineUntouched(control);
-      } else {
-        control.markAsPristine();
-        control.markAsUntouched();
-      }
-    });
+  onCepChange() {
+    const cep = this.usuarioForm.get('cep')?.value;
+    if (cep && cep.length === 8) {
+      this.cepService.buscarCep(cep).subscribe((data: any) => {
+        if (data) {
+          this.usuarioForm.patchValue({
+            endereco: data.logradouro || '',
+            cidadeEstado: `${data.localidade || ''} / ${data.uf || ''}`
+          });
+        }
+      });
+    }
   }
 }

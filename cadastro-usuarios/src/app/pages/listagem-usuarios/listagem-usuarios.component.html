@@ -1,14 +1,10 @@
 <div class="listagem-container mat-elevation-z2">
-<h2>Listagem de Usuários</h2>
+  <h2>Listagem de Usuários</h2>
   <table>
     <thead>
       <tr>
-        <th>
-          <mat-checkbox [(ngModel)]="selecionarTodos" (change)="toggleTodos()"></mat-checkbox>
-        </th>
-        <th>Nome Completo</th>
+        <th>Nome</th>
         <th>Email</th>
-        <th>CEP</th>
         <th>CPF</th>
         <th>Objetos</th>
         <th>Ações</th>
@@ -16,20 +12,16 @@
     </thead>
     <tbody>
       <tr *ngFor="let usuario of usuarios">
-        <td>
-          <mat-checkbox [(ngModel)]="usuario.selecionado"></mat-checkbox>
-        </td>
-        <td>{{ usuario.nome }}
-            {{ usuario.nomeMeio }}
-            {{ usuario.sobrenome }}
-        </td>
+        <td>{{ usuario.nome }} {{ usuario.sobrenome }}</td>
         <td>{{ usuario.email }}</td>
-        <td>{{ usuario.cep }}</td>
         <td>{{ usuario.cpf }}</td>
         <td>
           <ul>
             <li *ngFor="let obj of usuario.objetos">
-              {{ obj.nome }} ({{ obj.quantidade }}) - Série: {{ obj.nSerie }}
+              {{ obj.tipoProduto }} ({{ obj.quantidade }}): 
+              <span *ngFor="let serie of obj.nSerie; let last = last">
+                {{ serie }}<span *ngIf="!last">, </span>
+              </span>
             </li>
           </ul>
         </td>
@@ -44,5 +36,4 @@
       </tr>
     </tbody>
   </table>
-  <button style="margin-top: 20px;" mat-raised-button color="accent" (click)="abrirEditarMuitos()">Editar Muitos</button>
 </div>

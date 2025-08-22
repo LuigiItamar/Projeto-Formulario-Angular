@@ -14,9 +14,9 @@ export interface Usuario {
   cep: string;
   cpf: string;
   objetos: {
-    nome: string;
+    tipoProduto: string;
     quantidade: number;
-    nSerie: string;
+    nSerie: string[];
   }[];
-  selecionado?: boolean; // <-- Adicione esta linha
+  selecionado?: boolean;
 }

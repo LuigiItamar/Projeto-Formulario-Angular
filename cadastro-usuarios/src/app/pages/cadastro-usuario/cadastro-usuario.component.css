@@ -6,7 +6,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 15px;
 }
 
 .form-grid {
@@ -21,16 +21,22 @@
   }
 }
 
+.objetos-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
 .objeto-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 2fr auto;
+  display: flex;
   gap: 12px;
-  align-items: end;
+  align-items: flex-end;
   background: #f5f5f5;
   border-radius: 6px;
   padding: 12px;
   margin-top: 12px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .w-100 {
@@ -43,4 +49,20 @@
 
 .mat-input-element {
   border-radius: 12px !important;
+}
+
+.numeros-serie {
+  display: flex;
+  gap: 8px;
+}
+
+.numeros-serie-vertical {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.w-num-serie {
+  width: 100%;
 }

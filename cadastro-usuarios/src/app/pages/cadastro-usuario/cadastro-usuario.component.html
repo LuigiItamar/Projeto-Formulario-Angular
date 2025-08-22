@@ -1,4 +1,3 @@
-
 <form [formGroup]="usuarioForm" (ngSubmit)="cadastrar()" class="mat-elevation-z2 cadastro-form">
   <h2>{{ isEdicao ? 'Atualizar Usuário' : 'Cadastro de Usuário' }}</h2>
   <div class="form-grid">
@@ -16,19 +15,31 @@
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Sobrenome</mat-label>
       <input matInput formControlName="sobrenome" />
-      <mat-error *ngIf="usuarioForm.get('sobrenome')?.invalid && usuarioForm.get('sobrenome')?.touched">Obrigatório</mat-error>
+      <mat-error
+        *ngIf="usuarioForm.get('sobrenome')?.invalid && usuarioForm.get('sobrenome')?.touched">Obrigatório</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email" />
-      <mat-error *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">Email inválido</mat-error>
+      <mat-error *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">Email
+        inválido</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>CEP</mat-label>
-      <input matInput formControlName="cep" maxlength="8" />
+      <input matInput formControlName="cep" (blur)="onCepChange()" placeholder="CEP" />
       <mat-error *ngIf="usuarioForm.get('cep')?.invalid && usuarioForm.get('cep')?.touched">CEP inválido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Endereço</mat-label>
+      <input matInput formControlName="endereco" placeholder="Endereço" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Cidade/Estado</mat-label>
+      <input matInput formControlName="cidadeEstado" placeholder="Cidade/Estado" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-100">
@@ -42,23 +53,39 @@
     <h3>Objetos</h3>
     <button mat-stroked-button color="primary" type="button" (click)="adicionarObjeto()">Adicionar Objeto</button>
     <div *ngFor="let obj of objetos.controls; let i = index" [formGroupName]="i" class="objeto-grid">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Nome</mat-label>
-        <input matInput formControlName="nome" />
-      </mat-form-field>
+      <div style="display: flex; align-items: center; justify-content: space-between;" class="w-100">
+        <mat-form-field appearance="outline" style="flex: 0 0 90%;">
+          <mat-label>Tipo de Produto</mat-label>
+          <mat-select formControlName="tipoProduto">
+            <mat-option *ngFor="let tipo of tiposProdutosLista" [value]="tipo">
+              {{ tipo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button style="margin-bottom: 15px;" mat-icon-button color="warn" type="button" (click)="removerObjeto(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Quantidade</mat-label>
         <input matInput formControlName="quantidade" type="number" min="1" />
       </mat-form-field>
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Nº Série</mat-label>
-        <input matInput formControlName="nSerie" />
-      </mat-form-field>
-      <button mat-icon-button color="warn" type="button" (click)="removerObjeto(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
+
+      <div formArrayName="nSerie">
+        <div *ngFor="let serie of getNSerieControls(obj); let j = index">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nº Série {{ j + 1 }}</mat-label>
+            <input matInput [formControlName]="j" />
+          </mat-form-field>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <button mat-raised-button color="primary" class="botaoCadastrar" type="submit">{{ isEdicao ? 'Atualizar' : 'Cadastrar' }}</button>
+  <button mat-raised-button color="primary" class="botaoCadastrar" type="submit">{{ isEdicao ? 'Atualizar' : 'Cadastrar'
+    }}</button>
 </form>
