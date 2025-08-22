@@ -1,193 +1,7 @@
 {
   "usuarios": [
     {
-      "id": "7d4d",
-      "nome": "LUIGI",
-      "nomeMeio": "FIDENCIO",
-      "sobrenome": "ITAMAR",
-      "email": "teste@teste.com",
-      "cpf": "11111111111",
-      "objetos": [
-        {
-          "tipoProduto": "Notebook",
-          "quantidade": 11,
-          "nSerie": [
-            "1122",
-            "1155",
-            "2277",
-            "111",
-            "5564",
-            "234",
-            "24256",
-            "23253",
-            "eg35",
-            "tr44",
-            "tj24"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "07d4",
-      "nome": "JOÃO",
-      "nomeMeio": "PEDRO",
-      "sobrenome": "ALMEIDA",
-      "email": "joao.almeida@email.com",
-      "cpf": "33333333333",
-      "objetos": [
-        {
-          "tipoProduto": "Tablet",
-          "quantidade": 3,
-          "nSerie": [
-            "4567",
-            "8910",
-            "1122"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "dd0e",
-      "nome": "ANA",
-      "nomeMeio": "BEATRIZ",
-      "sobrenome": "LIMA",
-      "email": "ana.lima@email.com",
-      "cpf": "44444444444",
-      "objetos": [
-        {
-          "tipoProduto": "Monitor",
-          "quantidade": 1,
-          "nSerie": [
-            "3344"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "3758",
-      "nome": "CARLOS",
-      "nomeMeio": "EDUARDO",
-      "sobrenome": "PEREIRA",
-      "email": "carlos.pereira@email.com",
-      "cpf": "55555555555",
-      "objetos": [
-        {
-          "tipoProduto": "Impressora",
-          "quantidade": 1,
-          "nSerie": [
-            "5566"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "5ca4",
-      "nome": "FERNANDA",
-      "nomeMeio": "OLIVEIRA",
-      "sobrenome": "SANTOS",
-      "email": "fernanda.santos@email.com",
-      "cpf": "66666666666",
-      "objetos": [
-        {
-          "tipoProduto": "Notebook",
-          "quantidade": 2,
-          "nSerie": [
-            "7788",
-            "9900"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "8754",
-      "nome": "RAFAEL",
-      "nomeMeio": "MENDES",
-      "sobrenome": "COSTA",
-      "email": "rafael.costa@email.com",
-      "cpf": "77777777777",
-      "objetos": [
-        {
-          "tipoProduto": "Teclado",
-          "quantidade": 1,
-          "nSerie": [
-            "2211"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "16aa",
-      "nome": "JULIANA",
-      "nomeMeio": "RAMOS",
-      "sobrenome": "BARBOSA",
-      "email": "juliana.barbosa@email.com",
-      "cpf": "88888888888",
-      "objetos": [
-        {
-          "tipoProduto": "Mouse",
-          "quantidade": 2,
-          "nSerie": [
-            "3322",
-            "4433"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "9bca",
-      "nome": "GABRIEL",
-      "nomeMeio": "HENRIQUE",
-      "sobrenome": "MORAES",
-      "email": "gabriel.moraes@email.com",
-      "cpf": "99999999999",
-      "objetos": [
-        {
-          "tipoProduto": "Headset",
-          "quantidade": 1,
-          "nSerie": [
-            "6655"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "a8a4",
-      "nome": "MARCOS",
-      "nomeMeio": "VINICIUS",
-      "sobrenome": "TEIXEIRA",
-      "email": "marcos.teixeira@email.com",
-      "cpf": "12121212121",
-      "objetos": [
-        {
-          "tipoProduto": "Câmera",
-          "quantidade": 2,
-          "nSerie": [
-            "8899",
-            "9900"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "7275",
-      "nome": "MARIA",
-      "nomeMeio": "CLARA",
-      "sobrenome": "SOUZA",
-      "email": "maria.souza@email.com",
-      "cpf": "22222222222",
-      "objetos": [
-        {
-          "tipoProduto": "Celular",
-          "quantidade": 2,
-          "nSerie": [
-            "9876",
-            "1234"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "7dc6",
+      "id": "af27",
       "nome": "LUIZA",
       "nomeMeio": "MARTINS",
       "sobrenome": "PEREIRA",
@@ -204,7 +18,24 @@
       ]
     },
     {
-      "id": "5a4c",
+      "id": "41a6",
+      "nome": "CAROLINA",
+      "nomeMeio": "DIAS",
+      "sobrenome": "MELO",
+      "email": "carolina.melo@email.com",
+      "cpf": "34567890123",
+      "objetos": [
+        {
+          "tipoProduto": "Celular",
+          "quantidade": 1,
+          "nSerie": [
+            "3001"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "0163",
       "nome": "THIAGO",
       "nomeMeio": "ALVES",
       "sobrenome": "ROCHA",
@@ -222,24 +53,7 @@
       ]
     },
     {
-      "id": "8fad",
-      "nome": "CAROLINA",
-      "nomeMeio": "DIAS",
-      "sobrenome": "MELO",
-      "email": "carolina.melo@email.com",
-      "cpf": "34567890123",
-      "objetos": [
-        {
-          "tipoProduto": "Celular",
-          "quantidade": 1,
-          "nSerie": [
-            "3001"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "4a49",
+      "id": "e491",
       "nome": "DANIEL",
       "nomeMeio": "SOUZA",
       "sobrenome": "LOPES",
@@ -257,7 +71,7 @@
       ]
     },
     {
-      "id": "15f3",
+      "id": "11e2",
       "nome": "AMANDA",
       "nomeMeio": "COSTA",
       "sobrenome": "RIBEIRO",
@@ -274,7 +88,7 @@
       ]
     },
     {
-      "id": "44ce",
+      "id": "024e",
       "nome": "PEDRO",
       "nomeMeio": "HENRIQUE",
       "sobrenome": "VASCONCELOS",
@@ -291,7 +105,7 @@
       ]
     },
     {
-      "id": "6195",
+      "id": "5fe5",
       "nome": "RENATA",
       "nomeMeio": "BARBOSA",
       "sobrenome": "LIMA",
@@ -309,7 +123,7 @@
       ]
     },
     {
-      "id": "552e",
+      "id": "8724",
       "nome": "FELIPE",
       "nomeMeio": "MOURA",
       "sobrenome": "GOMES",
@@ -326,7 +140,7 @@
       ]
     },
     {
-      "id": "4d92",
+      "id": "0574",
       "nome": "ISABELA",
       "nomeMeio": "FERREIRA",
       "sobrenome": "SOUZA",
@@ -343,7 +157,7 @@
       ]
     },
     {
-      "id": "41b9",
+      "id": "a914",
       "nome": "GUSTAVO",
       "nomeMeio": "ANDRADE",
       "sobrenome": "MONTEIRO",

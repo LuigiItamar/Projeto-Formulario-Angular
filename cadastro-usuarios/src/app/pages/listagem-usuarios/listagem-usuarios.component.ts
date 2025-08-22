@@ -196,4 +196,9 @@ export class ListagemUsuariosComponent implements OnInit {
       });
     }
   }
+
+  get todosSelecionados(): boolean {
+    const totalValidos = this.usuarios.filter(u => !!u.id).length;
+    return this.selecionados.length === totalValidos && totalValidos > 0;
+  }
 }

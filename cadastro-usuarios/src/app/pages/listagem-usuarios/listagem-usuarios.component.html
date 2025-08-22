@@ -13,7 +13,7 @@
       <tr>
         <th>
           <input type="checkbox"
-            [checked]="selecionados.length === usuarios.filter(u => !!u.id).length && usuarios.filter(u => !!u.id).length > 0"
+            [checked]="todosSelecionados"
             (change)="selecionarTodos($event.target.checked)">
         </th>
         <th>Nome</th>
