@@ -10,11 +10,19 @@
       "objetos": [
         {
           "tipoProduto": "Notebook",
-          "quantidade": 3,
+          "quantidade": 11,
           "nSerie": [
             "1122",
             "1155",
-            "2277"
+            "2277",
+            "111",
+            "5564",
+            "234",
+            "24256",
+            "23253",
+            "eg35",
+            "tr44",
+            "tj24"
           ]
         }
       ],
